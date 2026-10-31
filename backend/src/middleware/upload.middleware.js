@@ -1,5 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
+import os from "node:os";
 import crypto from "node:crypto";
 import { fileURLToPath } from "node:url";
 import multer from "multer";
@@ -8,7 +9,9 @@ import { ApiError } from "../utils/apiError.js";
 import { getFileTypeFromUpload } from "../services/file.service.js";
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url));
-export const UPLOAD_DIR = path.resolve(currentDir, "../../uploads");
+export const UPLOAD_DIR = process.env.VERCEL
+  ? path.join(os.tmpdir(), "uploads")
+  : path.resolve(currentDir, "../../uploads");
 
 fs.mkdirSync(UPLOAD_DIR, { recursive: true });
 

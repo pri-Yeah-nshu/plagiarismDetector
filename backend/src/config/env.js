@@ -11,7 +11,7 @@ const REQUIRED_VARIABLES = [
   "TEACHER_EMAIL",
   "TEACHER_PASSWORD",
 ];
-if (process.env.TEACHER_PASSWORD.length < 8) {
+if ((process.env.TEACHER_PASSWORD || "").length < 8) {
   console.error(
     "Configuration error: TEACHER_PASSWORD must be at least 8 characters.",
   );

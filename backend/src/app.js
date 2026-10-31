@@ -12,6 +12,7 @@ import assignmentRoutes from "./routes/assignment.routes.js";
 import plagiarismRoutes from "./routes/plagiarism.routes.js";
 
 const app = express();
+app.set("trust proxy", 1);
 
 app.use(helmet());
 app.use(
